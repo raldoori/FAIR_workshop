@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "interactive_compute.html",
+    "href": "interactive_compute.html",
+    "title": "Interactive work without a server with web assembly",
+    "section": "",
+    "text": "Histogram interacting with a javascript Observable input component:\n\nviewof sex_box = Inputs.checkbox(\n  [\"M\", \"F\"],\n  {\n    value: [\"M\", \"F\"],\n    label: \"Shown sexes:\",\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA more complex examples with more interactive inputs (NB: it seems that when moving the slider the image get re-computed for each intermediate value, leading to some slowness sometimes) :\n\n\n\n\n\n\n\n\n\nviewof sex_show = Inputs.radio([\"M\", \"F\"], {label: \"Sex:\",value:\"F\"})\n\nviewof year = Inputs.range([1880, 2010], {step: 10, label: \"starting year:\"})\n\nviewof n_names = Inputs.range([1, 12], {step: 1, label: \"number of top names:\"})"
+  },
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "We load the necessary packages for our analysis.\n\nlibrary(babynames)\nlibrary(knitr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(tidyr)\nlibrary(pheatmap)\n\nWe check the top 10 rows of the dataset with baby names, and show them as a table using kable function.\n\nhead(babynames) |&gt; \n  kable()\n\n\n\n\nyear\nsex\nname\nn\nprop\n\n\n\n\n1880\nF\nMary\n7065\n0.0723836\n\n\n1880\nF\nAnna\n2604\n0.0266790\n\n\n1880\nF\nEmma\n2003\n0.0205215\n\n\n1880\nF\nElizabeth\n1939\n0.0198658\n\n\n1880\nF\nMinnie\n1746\n0.0178884\n\n\n1880\nF\nMargaret\n1578\n0.0161672\n\n\n\n\n\nThe function get_most_frequent gets the most frequent baby names over a time-period, whereas the function plot_top plots the top n most popular names.\n\n\nCode\nget_most_frequent &lt;- function(babynames, select_sex, from = 1950) {\n  most_freq &lt;- babynames |&gt;\n    filter(sex == select_sex, year &gt; from) |&gt;\n    group_by(name) |&gt;\n    summarise(average = mean(prop)) |&gt;\n    arrange(desc(average))\n    \n  return(list(\n    babynames = babynames,\n    most_frequent = most_freq,\n    sex = select_sex,\n    from = from))\n}\n\nplot_top &lt;- function(x, top = 10) {\n  topx &lt;- x$most_frequent$name[1:top]\n  \n  p &lt;- x$babynames |&gt;\n    filter(name %in% topx, sex == x$sex, year &gt; x$from) |&gt;\n    ggplot(aes(x = year, y = prop, color = name)) +\n    geom_line() +\n    scale_color_brewer(palette = \"Paired\") +\n    theme_classic()\n  \n  return(p)\n}\n\n\nPlot the figure for the top 10 most popular girl names.\n\nget_most_frequent(babynames,\n                  select_sex = \"F\") |&gt;\n  plot_top()\n\n\n\n\n\n\n\nFigure 1: Line plot showing the top 10 most popular girl names from 1950 to 2020\n\n\n\n\n\nFigure 1 shows the plot of the 10 most popular girl names from 1950 to 2020 in the US, such as Lisa, Jennifer, and Jessica.\nNow we plot the figure for the top 10 most popular boy names.\n\nget_most_frequent(babynames,\n                  select_sex = \"M\") |&gt;\n  plot_top()\n\n\n\n\n\n\n\nFigure 2: Line plot showing the top 10 most popular boy names from 1950 to 2020\n\n\n\n\n\nFigure 2 shows the plot of the 10 most popular boy names from 1950 to 2020 in the US, such as Michael, James, and David, and how these names’ popularity decreases around 1990."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This site details a small analysis of the babynames dataset.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTipTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nCautionExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tutorial",
+    "section": "",
+    "text": "In this project we aim to visualise the trends of the most frequently used baby names from 1880 to 2017 in the United States. We do this by:\n\nUnderstanding the different columns of the data set\nFinding the top 10 most frequently used baby names in the data for:\n\ngirls\nboys\n\nPlotting the yearly trend of the top 10 baby names\n\n\n\n\nSepia image of two caucasian infants"
+  }
+]
