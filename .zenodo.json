@@ -1,0 +1,16 @@
+{
+  "title": "Analysis of babynames",
+  "upload_type": "publication",
+  "publication_type": "report",
+  "keywords": [
+    "R",
+    "quarto",
+    "tutorial"
+  ],
+  "creators": [
+    {
+      "name": "Rafel Al-Doori",
+      "affiliation": "Institute of Tissue Medicine and Pathology"
+    } 
+  ]
+}
