@@ -1,0 +1,88 @@
+---
+title: "Analysis"
+---
+
+We load the necessary packages for our analysis.
+
+```{r}
+#| output: false
+
+library(babynames)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(pheatmap)
+
+```
+
+
+We check the top 10 rows of the dataset with baby names, and show them as a table using `kable` function.
+
+```{r}
+head(babynames) |> 
+  kable()
+
+```
+
+
+The function `get_most_frequent` gets the most frequent baby names over a time-period, whereas the function `plot_top` plots the top n most popular names.
+
+```{r}
+#| code-fold: true
+
+get_most_frequent <- function(babynames, select_sex, from = 1950) {
+  most_freq <- babynames |>
+    filter(sex == select_sex, year > from) |>
+    group_by(name) |>
+    summarise(average = mean(prop)) |>
+    arrange(desc(average))
+    
+  return(list(
+    babynames = babynames,
+    most_frequent = most_freq,
+    sex = select_sex,
+    from = from))
+}
+
+plot_top <- function(x, top = 10) {
+  topx <- x$most_frequent$name[1:top]
+  
+  p <- x$babynames |>
+    filter(name %in% topx, sex == x$sex, year > x$from) |>
+    ggplot(aes(x = year, y = prop, color = name)) +
+    geom_line() +
+    scale_color_brewer(palette = "Paired") +
+    theme_classic()
+  
+  return(p)
+}
+```
+
+
+Plot the figure for the top 10 most popular girl names.
+
+```{r}
+#| label: fig-girl_names
+#| fig-cap: "Line plot showing the top 10 most popular girl names from 1950 to 2020"
+
+get_most_frequent(babynames,
+                  select_sex = "F") |>
+  plot_top()
+
+```
+
+@fig-girl_names shows the plot of the 10 most popular girl names from 1950 to 2020 in the US, such as Lisa, Jennifer, and Jessica.
+
+Now we plot the figure for the top 10 most popular boy names.
+
+```{r}
+#| label: fig-boy_names
+#| fig-cap: "Line plot showing the top 10 most popular boy names from 1950 to 2020"
+
+get_most_frequent(babynames,
+                  select_sex = "M") |>
+  plot_top()
+```
+
+@fig-boy_names shows the plot of the 10 most popular boy names from 1950 to 2020 in the US, such as Michael, James, and David, and how these names' popularity decreases around 1990.
