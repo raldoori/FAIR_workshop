@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://raldoori.github.io/FAIR_workshop/index.html</loc>
-    <lastmod>2026-07-08T14:10:25.835Z</lastmod>
-  </url>
-  <url>
     <loc>https://raldoori.github.io/FAIR_workshop/interactive_compute.html</loc>
-    <lastmod>2026-07-08T14:10:25.835Z</lastmod>
+    <lastmod>2026-07-08T11:49:24.120Z</lastmod>
   </url>
   <url>
     <loc>https://raldoori.github.io/FAIR_workshop/analysis.html</loc>
-    <lastmod>2026-07-08T14:10:25.835Z</lastmod>
+    <lastmod>2026-07-08T12:04:20.463Z</lastmod>
   </url>
   <url>
     <loc>https://raldoori.github.io/FAIR_workshop/about.html</loc>
-    <lastmod>2026-07-08T14:10:25.835Z</lastmod>
+    <lastmod>2026-07-08T11:49:24.117Z</lastmod>
+  </url>
+  <url>
+    <loc>https://raldoori.github.io/FAIR_workshop/index.html</loc>
+    <lastmod>2026-07-08T13:56:53.690Z</lastmod>
   </url>
 </urlset>
