@@ -16,6 +16,7 @@ library(pheatmap)
 
 ```
 
+## Top 10 names
 
 We check the top 10 rows of the dataset with baby names, and show them as a table using `kable` function.
 
@@ -86,3 +87,48 @@ get_most_frequent(babynames,
 ```
 
 @fig-boy_names shows the plot of the 10 most popular boy names from 1950 to 2020 in the US, such as Michael, James, and David, and how these names' popularity decreases around 1990.
+
+## 2010 onwards
+
+We create a panel with several figures for girl names fom 2010 onwards.
+
+```{r}
+#| label: fig-line-2010
+#| layout: [[50, 50], [100]]
+#| fig-cap: "Most popular girl names from 2010 onwards"
+#| fig-subcap:
+#|    - "Top 5"
+#|    - "Top 10"
+#|    - "Top 30" 
+
+# get most frequent girl names from 2010 onwards
+from_year <- 2010
+most_freq_girls <- get_most_frequent(babynames, select_sex = "F",
+                                     from = from_year)
+
+# plot top 5 girl names
+most_freq_girls |>
+  plot_top(top = 5)
+
+# plot top 10 girl names
+most_freq_girls |>
+  plot_top(top = 10)
+
+# get top 30 girl names in a matrix
+# with names in rows and years in columns
+prop_df <- babynames |> 
+  filter(name %in% most_freq_girls$most_frequent$name[1:30] & sex == "F") |>
+  filter(year >= from_year) |> 
+  select(year, name, prop) |>
+  pivot_wider(names_from = year,
+              values_from = prop)
+
+prop_mat <- as.matrix(prop_df[, 2:ncol(prop_df)])
+rownames(prop_mat) <- prop_df$name
+
+# create heatmap
+pheatmap(prop_mat, cluster_cols = FALSE, scale = "row")
+
+```
+
+In @fig-line-2010-1 and @fig-line-2010-2, we see the line plots of the top 5 and top 10 names for girls from 2010 onwards. In @fig-line-2010-3, we see a heatmat that shows the distribution of the top 30 names based on the year.
