@@ -2,6 +2,8 @@
 title: "Tutorial"
 ---
 
+[![DOI](https://zenodo.org/badge/1293534034.svg)](https://doi.org/10.5281/zenodo.21263350)
+
 In this project we aim to visualise the trends of the most frequently used baby names from 1880 to 2017 in the United States. We do this by:
 
 - Understanding the different columns of the data set
@@ -10,5 +12,4 @@ In this project we aim to visualise the trends of the most frequently used baby 
   - boys
 - Plotting the yearly trend of the top 10 baby names
 
-![Sepia image of two caucasian infants](https://live.staticflickr.com/5140/5457250712_45734e0548_b.jpg){fig-align="right" width=400}
-
+![Sepia image of two caucasian infants](https://live.staticflickr.com/5140/5457250712_45734e0548_b.jpg){fig-align="right" width="400"}
