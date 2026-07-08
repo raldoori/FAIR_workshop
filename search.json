@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tutorial",
+    "section": "",
+    "text": "In this project we aim to visualise the trends of the most frequently used baby names from 1880 to 2017 in the United States. We do this by:\n\nUnderstanding the different columns of the data set\nFinding the top 10 most frequently used baby names in the data for:\n\ngirls\nboys\n\nPlotting the yearly trend of the top 10 baby names\n\n\n\n\nSepia image of two caucasian infants"
+  },
+  {
     "objectID": "interactive_compute.html",
     "href": "interactive_compute.html",
     "title": "Interactive work without a server with web assembly",
@@ -33,12 +40,5 @@
     "title": "About",
     "section": "",
     "text": "This site details a small analysis of the babynames dataset.\n\n\n\n\n\n\nNote\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n\n\n\n\n\nTipTip with Title\n\n\n\nThis is an example of a callout with a title.\n\n\n\n\n\n\n\n\nCautionExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Tutorial",
-    "section": "",
-    "text": "In this project we aim to visualise the trends of the most frequently used baby names from 1880 to 2017 in the United States. We do this by:\n\nUnderstanding the different columns of the data set\nFinding the top 10 most frequently used baby names in the data for:\n\ngirls\nboys\n\nPlotting the yearly trend of the top 10 baby names\n\n\n\n\nSepia image of two caucasian infants"
   }
 ]
